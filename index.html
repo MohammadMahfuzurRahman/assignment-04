@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Job Tracker</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    
+    <header>
+        <h1>Job Tracker</h1>
+        <div>
+            <div>Total jobs: <span id="total-count">0</span></div>
+            <div>Interview: <span id="interview-count">0</span></div>
+            <div>Rejected: <span id="rejected-count">0</span></div>
+        </div>
+    </header>
+    <section class="jobs-section">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="all">All</button>
+            <button class="tab-btn" data-tab="interview">Interview</button>
+            <button class="tab-btn" data-tab="rejected">Rejected</button>
+        </div>
+        <div class="jobs-container" id="jobs-container">
+        </div>
+    </section>
+    <script src="./script.js"></script>
 </body>
 </html>
