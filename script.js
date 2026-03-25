@@ -40,7 +40,7 @@ function renderJobs(filter="all"){
             <p>${job.description}</p>
             <button class="interview-btn">Interview</button>
             <button class="rejected-btn">Rejected</button>
-            <button class="delete-btn">Delete</button>
+            <button class="delete-btn">🗑</button>
             `;
             const interviewBtn=card.querySelector(".interview-btn");
             const rejectedBtn=card.querySelector(".rejected-btn");
