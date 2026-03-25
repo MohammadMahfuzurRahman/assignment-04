@@ -1,3 +1,4 @@
+let currentTab = "all";
 let jobs=[
     {id:1,company:"ABC Crop",position:"Frontend Dev",location:"Dhaka",type:"Full-Time",salary:"BDT 40k",description:"Build UI",status:""},
     {id:2,company:"XYZ Ltd",position:"Backend Dev",location:"Khulna",type:"Part-Time",salary:"BDT 35k",description:"Build APIs",status:""},
@@ -11,7 +12,7 @@ let jobs=[
 const jobsContainer = document.getElementById("jobs-container");
 const totalCount = document.getElementById("total-count");
 const interviewCount = document.getElementById("interview-count");
-const rejectionCount= document.getElementById("rejected-count");
+const rejectedCount= document.getElementById("rejected-count");
 const tabButtons= document.querySelectorAll(".tab-btn");
 
 function renderJobs(filter="all"){
@@ -20,8 +21,13 @@ function renderJobs(filter="all"){
     if(filter==="interview")filteredJobs=jobs.filter(job=>job.status==="interview");
     if(filter==="rejected")filteredJobs=jobs.filter(job=>job.status==="rejected");
     if(filteredJobs.length===0){
-        jobsContainer.innerHTML="<p>No jobs available</p>";
-    }
+        jobsContainer.innerHTML=`
+          <div class="empty-state">
+          <img src="./jobs.png">
+          <h3>No jobs available</h3>
+          <p>Check back soon for new opportunites</p>
+          </div>
+        `;}
     else{
         filteredJobs.forEach(job=>{
             const card=document.createElement("div");
@@ -42,17 +48,17 @@ function renderJobs(filter="all"){
             interviewBtn.addEventListener("click",()=>{
                 job.status="interview";
                 updateCounts();
-                renderJobs(filter);
+                renderJobs(currentTab);
             });
            rejectedBtn.addEventListener("click",()=>{
                 job.status="rejected";
                 updateCounts();
-                renderJobs(filter);
+                renderJobs(currentTab);
             });
             deleteBtn.addEventListener("click",()=>{
-                job =jobs.filter(j=>j.id!==job.id);
+                jobs =jobs.filter(j => j.id !== job.id);
                 updateCounts();
-                renderJobs(filter);
+                renderJobs(currentTab);
             });
             jobsContainer.appendChild(card);
         });
@@ -60,15 +66,16 @@ function renderJobs(filter="all"){
 }
 function updateCounts(){
     totalCount.textContent=jobs.length;
-    interviewCount.textContent=jobs.filter(jobs=>job.status==="interview").length;
-    rejectedCount.textContent=jobs.filter(jobs=>job.status==="rejected").length;
+    interviewCount.textContent = jobs.filter(job => job.status === "interview").length;
+    rejectedCount.textContent = jobs.filter(job => job.status === "rejected").length;
 }
 tabButtons.forEach(btn=> {
     btn.addEventListener("click",()=>{
-        tabButtons.forEach(b=.b.classList.remove("active"));
+        tabButtons.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
+        currentTab = btn.dataset.tab;
         renderJobs(btn.dataset.tab);
     });
 });
 updateCounts();
-renderJobs();
+renderJobs(currentTab);

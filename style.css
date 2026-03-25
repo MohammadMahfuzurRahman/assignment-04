@@ -42,6 +42,38 @@ header h1{
     background-color: #4CAF50;
     color: white;
 }
+.empty-state{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+    background-color: #f9fafb;
+    border-radius: 10px;
+    color: #888;
+    text-align: center;
+    width:1100px;
+}
+.empty-state img {
+    width: 60px;
+    margin-bottom: 10px;
+    opacity: 100;
+}
+.empty-state h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: black;
+}
+.empty-state p {
+    font-size: 12px;
+}
+.jobs-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
 .job-card{
     background-color: white;
     padding: 15px;
